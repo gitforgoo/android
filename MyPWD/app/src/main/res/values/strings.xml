@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MyPWD</string>
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="id">id</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="login">LogIn</string>
+    <string name="name">Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">save</string>
+    <string name="register_complete">Register Complete</string>
+    <string name="login_success">Login Success</string>
+    <string name="login_fail">Login Fail</string>
+    <string name="login_wrong">ID or PASSWORD is wrong</string>
+</resources>
