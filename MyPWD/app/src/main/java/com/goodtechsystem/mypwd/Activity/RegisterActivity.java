@@ -1,8 +1,6 @@
 package com.goodtechsystem.mypwd.Activity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,23 +9,15 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.goodtechsystem.mypwd.R;
-import com.goodtechsystem.mypwd.bo.UserDBHelper;
+import com.goodtechsystem.mypwd.bo.UserBO;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText tbxID;
     private EditText tbxName;
     private EditText tbxPassword;
-
-    private Button btnSave;
-    private Button btnCancel;
-
-    UserDBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
         tbxName = findViewById(R.id.tbxName);
         tbxPassword = findViewById(R.id.tbxPassword);
 
-        btnSave = findViewById(R.id.btnSave);
-        btnCancel = findViewById(R.id.btnCancel);
-
-        dbHelper = new UserDBHelper(this);
+        Button btnSave = findViewById(R.id.btnSave);
+        Button btnCancel = findViewById(R.id.btnCancel);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
         String name = tbxName.getText().toString();
         String password = tbxPassword.getText().toString();
 
-        dbHelper.addUser(id, name, password);
+        UserBO bo = new UserBO(this);
+        bo.insertUser(id, name, password);
 
         Toast.makeText(this.getApplicationContext(), getString(R.string.register_complete), Toast.LENGTH_SHORT).show();
 
