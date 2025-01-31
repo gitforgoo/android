@@ -1,20 +1,22 @@
 package com.goodtechsystem.mypwd.vo;
 
+import com.goodtechsystem.mypwd.util.EncDecUtil;
+
 public class PwdVO {
 
-    private long oid;
+    private String oid;
     private String site;
 
     private String id;
-    private String pwd;
+    private String password;
     private String purpose;
-    private String usage;
+    private String remark;
 
-    public long getOid() {
+    public String getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(String oid) {
         this.oid = oid;
     }
 
@@ -27,19 +29,24 @@ public class PwdVO {
     }
 
     public String getId() {
-        return id;
+        //return id;
+
+        return new EncDecUtil().decryptString(id);
     }
 
     public void setId(String id) {
-        this.id = id;
+        //this.id = id;
+        this.id = new EncDecUtil().encryptString(id);
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPassword() {
+        //return password;
+        return new EncDecUtil().decryptString(password);
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPassword(String password) {
+        //this.password = password;
+        this.password = new EncDecUtil().encryptString(password);
     }
 
     public String getPurpose() {
@@ -50,11 +57,11 @@ public class PwdVO {
         this.purpose = purpose;
     }
 
-    public String getUsage() {
-        return usage;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setUsage(String usage) {
-        this.usage = usage;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

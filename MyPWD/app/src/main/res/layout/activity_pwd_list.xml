@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PwdListActivity"
+    tools:context=".activity.PwdListActivity"
     android:orientation="vertical"
     android:fitsSystemWindows="true">
 
@@ -16,7 +16,7 @@
         android:background="#411BA4"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:elevation="4dp"
-        app:title="List"/>
+        app:title="@string/list"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pwd"
@@ -30,10 +30,13 @@
         />
 
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/pwdList_btnAdd"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:text="@string/add" />
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        />
 
 </LinearLayout>

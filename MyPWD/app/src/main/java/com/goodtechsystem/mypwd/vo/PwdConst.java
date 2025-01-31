@@ -3,8 +3,9 @@ package com.goodtechsystem.mypwd.vo;
 public class PwdConst {
 
     public static final String DATABASE_NAME =  "goodtechsystem.db";
-
     public static final int DATABASE_VERSION = 1;
+    public static final String TYPE_MODIFY = "M";
+    public static final String TYPE_ADD = "A";
 
     public static class USER{
         public static final String TABLE_NAME = "t_user";
@@ -20,7 +21,7 @@ public class PwdConst {
         public static final String COL_ID = "id";
         public static final String COL_PWD = "pwd";
         public static final String COL_PURPOSE = "purpose";
-        public static final String COL_USAGE = "usage";
+        public static final String COL_REMARK = "remark";
     }
 
 }

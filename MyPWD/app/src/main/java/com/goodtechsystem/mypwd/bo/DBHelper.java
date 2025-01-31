@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 PwdConst.PWD.COL_ID + " TEXT, " +
                 PwdConst.PWD.COL_PWD + " TEXT, " +
                 PwdConst.PWD.COL_PURPOSE + " TEXT, " +
-                PwdConst.PWD.COL_USAGE + " TEXT)";
+                PwdConst.PWD.COL_REMARK + " TEXT)";
         db.execSQL(createPwdTableQuery);
     }
 

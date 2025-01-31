@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.RegisterActivity"
+    tools:context=".activity.RegisterActivity"
     android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
@@ -16,7 +16,7 @@
         android:background="#411BA4"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:elevation="4dp"
-        app:title="Register"/>
+        app:title="@string/register"/>
 
     <EditText
         android:id="@+id/tbxId"
@@ -24,13 +24,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/id"
         android:layout_marginTop="120dp"
-        />
-
-    <EditText
-        android:id="@+id/tbxName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         />
 
     <EditText
@@ -38,6 +33,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <EditText
+        android:id="@+id/tbxName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         />
 
     <LinearLayout
@@ -52,14 +60,5 @@
             android:text="@string/save"
             android:layout_margin="10dp"
             />
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cancel"
-            android:layout_margin="10dp"
-            />
-
     </LinearLayout>
 </LinearLayout>
