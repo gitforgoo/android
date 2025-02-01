@@ -24,6 +24,9 @@ public class RegisterActivity extends ActivityBase {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
 
+        //Toolbar 표시
+        setupToolbar(R.id.toolbar);
+
         tbxID = findViewById(R.id.tbxId);
         tbxName = findViewById(R.id.tbxName);
         tbxPassword = findViewById(R.id.tbxPassword);

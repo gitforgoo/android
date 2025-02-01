@@ -26,6 +26,9 @@ public class PwdListActivity extends ActivityBase {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pwd_list);
 
+        //Toolbar 표시
+        setupToolbar(R.id.toolbar);
+
         RecyclerView rv_pwd = findViewById(R.id.rv_pwd);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv_pwd.setLayoutManager(linearLayoutManager);

@@ -104,12 +104,12 @@ public class PwdBO extends BoBase{
             do {
                 PwdVO vo = new PwdVO();
 
-                String oid = cursor.getString(0);
-                String site = cursor.getString(1);
-                String id = cursor.getString(2);
-                String password = cursor.getString(3);
-                String purpose = cursor.getString(4);
-                String remark = cursor.getString(5);
+                String oid = cursor.getString(cursor.getColumnIndexOrThrow(PwdConst.PWD.COL_OID));
+                String site = cursor.getString(cursor.getColumnIndexOrThrow(PwdConst.PWD.COL_SITE));
+                String id = cursor.getString(cursor.getColumnIndexOrThrow(PwdConst.PWD.COL_ID));
+                String password = cursor.getString(cursor.getColumnIndexOrThrow(PwdConst.PWD.COL_PWD));
+                String purpose = cursor.getString(cursor.getColumnIndexOrThrow(PwdConst.PWD.COL_PURPOSE));
+                String remark = cursor.getString(cursor.getColumnIndexOrThrow(PwdConst.PWD.COL_REMARK));
 
                 vo.setOid(oid);
                 vo.setSite(site);

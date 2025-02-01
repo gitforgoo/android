@@ -23,6 +23,9 @@ public class PwdDetailActivity extends ActivityBase {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pwd_detail);
 
+        //Toolbar 표시
+        setupToolbar(R.id.toolbar);
+
         String type = this.getIntent().getStringExtra("type");
         if(PwdConst.TYPE_MODIFY.equals(type)){
             this.initData();

@@ -18,6 +18,7 @@
         android:elevation="4dp"
         app:title="@string/login"/>
 
+
     <EditText
         android:id="@+id/tbxId"
         android:layout_width="match_parent"
@@ -37,21 +38,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="60dp"
             android:inputType="textPassword"
             android:hint="@string/password"
             />
 
-        <ImageButton
-            android:id="@+id/eyeButton"
+        <Button
+            android:id="@+id/btnShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_eye"
-            android:contentDescription="Show/Hide password"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:text="@string/show"
+            android:textColor="#757474"
+            />
     </RelativeLayout>
 
     <LinearLayout
