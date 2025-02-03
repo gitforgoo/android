@@ -37,4 +37,5 @@
     <string name="terminate">종료</string>
     <string name="backup_success">백업 성공</string>
     <string name="restore_success">복원 성공</string>
+    <string name="search">검색</string>
 </resources>

@@ -91,7 +91,7 @@ public class ActivityBase extends AppCompatActivity {
                         ParcelFileDescriptor jsonFileDescriptor = this.getContentResolver().openFileDescriptor(result.getData().getData(), "w");
 
                         PwdBO bo = new PwdBO(this);
-                        ArrayList<PwdVO> lst = bo.selectAllPwd();
+                        ArrayList<PwdVO> lst = bo.selectPwdBySearchCondition(null);
 
                         JsonHelper jsonHelper = new JsonHelper(this);
                         jsonHelper.saveListToJson(lst, jsonFileDescriptor);
@@ -111,6 +111,10 @@ public class ActivityBase extends AppCompatActivity {
 
                         JsonHelper jsonHelper = new JsonHelper(this);
                         jsonHelper.saveJsonToData(jsonFileDescriptor);
+
+                        Intent intent = new Intent(this, PwdListActivity.class);
+                        startActivity(intent);
+
                         Toast.makeText(this, getString(R.string.restore_success), Toast.LENGTH_SHORT).show();
                     } catch (Exception e){
                         e.printStackTrace();

@@ -9,6 +9,7 @@ import com.goodtechsystem.mypwd.vo.PwdConst;
 import com.goodtechsystem.mypwd.vo.PwdVO;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Map;
 
 public class PwdBO extends BoBase{
 
@@ -54,13 +55,30 @@ public class PwdBO extends BoBase{
         db.close();
     }
 
-    public ArrayList<PwdVO> selectAllPwd() {
+    public ArrayList<PwdVO> selectPwdBySearchCondition(Map<String, String> searchCondition) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] fields = {PwdConst.PWD.COL_OID, PwdConst.PWD.COL_SITE, PwdConst.PWD.COL_ID, PwdConst.PWD.COL_PWD, PwdConst.PWD.COL_PURPOSE, PwdConst.PWD.COL_REMARK};
 
-        Cursor cursor = db.query(PwdConst.PWD.TABLE_NAME, fields, null, null, null, null, null);
+        String selection = "";
+        String[] selectionArgs = null;
+
+        if(searchCondition != null && !searchCondition.isEmpty()){
+            ArrayList<String> valueList = new ArrayList<>();
+            for(String key : searchCondition.keySet()){
+                selection = selection + key + "=?, ";
+                String value = searchCondition.get(key);
+                valueList.add(value);
+            }
+
+            if(selection != null && selection.length() > 0) {
+                selection = selection.substring(0, selection.length() -2);
+            }
+            selectionArgs = valueList.toArray(new String[0]);
+        }
+
+        Cursor cursor = db.query(PwdConst.PWD.TABLE_NAME, fields, selection, selectionArgs, null, null, null);
 
         ArrayList<PwdVO> ret = fill(cursor);
         cursor.close();
@@ -86,6 +104,25 @@ public class PwdBO extends BoBase{
         }
 
         return lst.get(0);
+    }
+
+    public ArrayList<String> selectSitesPwd(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] fields = {PwdConst.PWD.COL_SITE};
+
+        Cursor cursor = db.query(PwdConst.PWD.TABLE_NAME, fields, null, null, PwdConst.PWD.COL_SITE, null, PwdConst.PWD.COL_SITE);
+        ArrayList<String> lst = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                lst.add(cursor.getString(cursor.getColumnIndexOrThrow(PwdConst.PWD.COL_SITE)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return lst;
     }
 
     public void deletePwd(String oid){
