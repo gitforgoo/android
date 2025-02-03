@@ -4,6 +4,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="account">계정</string>
     <string name="id">아이디</string>
     <string name="password">패스워드</string>
     <string name="register">계정등록</string>
@@ -34,4 +35,6 @@
     <string name="warn_backbutton_press">2초 이내에 뒤로 가기 버튼을 한 번 더 누르면 종료됩니다.</string>
     <string name="setting">설정</string>
     <string name="terminate">종료</string>
+    <string name="backup_success">백업 성공</string>
+    <string name="restore_success">복원 성공</string>
 </resources>

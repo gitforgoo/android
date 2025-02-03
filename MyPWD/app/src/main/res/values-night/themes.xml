@@ -4,5 +4,10 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="android:windowFullscreen">false</item>
+
+        <!-- 다크 모드 색상 -->
+        <item name="colorPrimary">#BB86FC</item>
+        <!-- Toolbar에서 메뉴 팝업 스타일 적용 -->
+        <item name="android:popupTheme">@style/ThemeOverlay.DarkMenu</item>
     </style>
 </resources>

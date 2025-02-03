@@ -1,7 +1,6 @@
 package com.goodtechsystem.mypwd.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.view.Menu;
@@ -16,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.goodtechsystem.mypwd.R;
 import com.goodtechsystem.mypwd.bo.PwdBO;
 import com.goodtechsystem.mypwd.util.JsonHelper;
+import com.goodtechsystem.mypwd.vo.PwdConst;
 import com.goodtechsystem.mypwd.vo.PwdVO;
 
 import java.util.ArrayList;
@@ -57,6 +57,10 @@ public class ActivityBase extends AppCompatActivity {
             } else if(item.getItemId() == R.id.mi_terminate){
                 appTerminate();
                 return true;
+            } else if(item.getItemId() == R.id.mi_account){
+                Intent intent = new Intent(this, RegisterActivity.class);
+                intent.putExtra("type", PwdConst.TYPE_MODIFY);
+                startActivity(intent);
             }
         }
 
@@ -91,6 +95,7 @@ public class ActivityBase extends AppCompatActivity {
 
                         JsonHelper jsonHelper = new JsonHelper(this);
                         jsonHelper.saveListToJson(lst, jsonFileDescriptor);
+                        Toast.makeText(this, getString(R.string.backup_success), Toast.LENGTH_SHORT).show();
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -106,7 +111,7 @@ public class ActivityBase extends AppCompatActivity {
 
                         JsonHelper jsonHelper = new JsonHelper(this);
                         jsonHelper.saveJsonToData(jsonFileDescriptor);
-
+                        Toast.makeText(this, getString(R.string.restore_success), Toast.LENGTH_SHORT).show();
                     } catch (Exception e){
                         e.printStackTrace();
                     }

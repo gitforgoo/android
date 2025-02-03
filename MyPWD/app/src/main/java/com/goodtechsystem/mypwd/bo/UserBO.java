@@ -15,13 +15,13 @@ public class UserBO extends BoBase {
     }
 
     // 사용자 추가
-    public void insertUser(String id, String name, String password) {
+    public void insertUser(UserVO user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(PwdConst.USER.COLUMN_ID, id);
-        values.put(PwdConst.USER.COLUMN_NAME, name);
-        values.put(PwdConst.USER.COLUMN_PASSWORD, password);
+        values.put(PwdConst.USER.COLUMN_ID, user.getId());
+        values.put(PwdConst.USER.COLUMN_NAME, user.getName());
+        values.put(PwdConst.USER.COLUMN_PASSWORD, user.getPassword());
 
         db.insert(PwdConst.USER.TABLE_NAME, null, values);
         db.close();
@@ -55,10 +55,37 @@ public class UserBO extends BoBase {
         return ret;
     }
 
+    public long selectCountUser(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] fields = {"COUNT(*)"};
+
+         Cursor cursor = db.query(PwdConst.USER.TABLE_NAME, fields, null, null, null, null, null);
+         long count = 0;
+
+         if(cursor.moveToFirst()){
+             count = cursor.getLong(0);
+         }
+
+         return count;
+    }
+
     // 사용자 삭제
     public void deleteUser(int userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(PwdConst.USER.TABLE_NAME, PwdConst.USER.COLUMN_ID + "=?", new String[]{String.valueOf(userId)});
+        db.close();
+    }
+
+    public void updateUser(UserVO user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(PwdConst.USER.COLUMN_NAME, user.getName());
+        values.put(PwdConst.USER.COLUMN_PASSWORD, user.getPassword());
+
+        String[] whereArgs = {user.getId()};
+        db.update(PwdConst.USER.TABLE_NAME, values, "id=?", whereArgs);
         db.close();
     }
 }

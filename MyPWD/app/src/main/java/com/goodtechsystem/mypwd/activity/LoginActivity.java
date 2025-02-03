@@ -8,15 +8,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.widget.Toolbar;
 
 import com.goodtechsystem.mypwd.R;
 import com.goodtechsystem.mypwd.bo.UserBO;
+import com.goodtechsystem.mypwd.util.MyPWDApplication;
+import com.goodtechsystem.mypwd.vo.PwdConst;
 import com.goodtechsystem.mypwd.vo.UserVO;
 
 public class LoginActivity extends ActivityBase {
@@ -56,6 +56,16 @@ public class LoginActivity extends ActivityBase {
         Button btnLogin = findViewById(R.id.btnLogin);
         Button btnRegister = findViewById(R.id.btnRegister);
 
+        UserBO bo = new UserBO(this);
+        long count = bo.selectCountUser();
+        if(count > 0){
+            btnLogin.setVisibility(View.VISIBLE);
+            btnRegister.setVisibility(View.GONE);
+        } else {
+            btnRegister.setVisibility(View.VISIBLE);
+            btnLogin.setVisibility(View.GONE);
+        }
+
         Button btnShow = findViewById(R.id.btnShow);
         btnShow.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
@@ -87,6 +97,9 @@ public class LoginActivity extends ActivityBase {
 
         if(user != null){
             if(user.getPassword() !=null && password.equals(user.getPassword())){
+                MyPWDApplication app = (MyPWDApplication)getApplication();
+                app.setUserId(id);
+
                 Toast.makeText(this.getApplicationContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                 changeActivity(PwdListActivity.class);
             } else {
@@ -98,7 +111,9 @@ public class LoginActivity extends ActivityBase {
     }
 
     private void btnRegister_Click(View v){
-        changeActivity(RegisterActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra("type", PwdConst.TYPE_ADD);
+        startActivity(intent);
     }
 
     private void changeActivity(Class activity){
