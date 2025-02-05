@@ -2,11 +2,13 @@ package com.goodtechsystem.mypwd.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ public class LoginActivity extends ActivityBase {
 
     private EditText tbxId;
     private EditText tbxPassword;
+    private CheckBox cbSaveId;
+    private SharedPreferences sharedPreferences;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -33,6 +37,12 @@ public class LoginActivity extends ActivityBase {
 
         //Toolbar 표시
         setupToolbar(R.id.toolbar);
+
+        tbxId = findViewById(R.id.tbxId);
+        tbxPassword = findViewById(R.id.tbxPassword);
+        Button btnLogin = findViewById(R.id.btnLogin);
+        Button btnRegister = findViewById(R.id.btnRegister);
+        cbSaveId = findViewById(R.id.cb_save_id);
 
         // 뒤로가기 버튼 처리
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
@@ -51,10 +61,14 @@ public class LoginActivity extends ActivityBase {
         // 뒤로가기 버튼 처리를 활성화
         getOnBackPressedDispatcher().addCallback(this, callback);
 
-        tbxId = findViewById(R.id.tbxId);
-        tbxPassword = findViewById(R.id.tbxPassword);
-        Button btnLogin = findViewById(R.id.btnLogin);
-        Button btnRegister = findViewById(R.id.btnRegister);
+        // SharedPreferences 초기화
+        sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
+        // 저장된 ID 불러오기
+        String savedId = sharedPreferences.getString("user_id", "");
+        if (!savedId.isEmpty()) {
+            tbxId.setText(savedId);
+            cbSaveId.setChecked(true);
+        }
 
         UserBO bo = new UserBO(this);
         long count = bo.selectCountUser();
@@ -99,6 +113,15 @@ public class LoginActivity extends ActivityBase {
             if(user.getPassword() !=null && password.equals(user.getPassword())){
                 MyPWDApplication app = (MyPWDApplication)getApplication();
                 app.setUserId(id);
+
+                // 아이디 저장 여부 체크
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                if (cbSaveId.isChecked()) {
+                    editor.putString("user_id", id);
+                } else {
+                    editor.remove("user_id");
+                }
+                editor.apply();
 
                 Toast.makeText(this.getApplicationContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                 changeActivity(PwdListActivity.class);

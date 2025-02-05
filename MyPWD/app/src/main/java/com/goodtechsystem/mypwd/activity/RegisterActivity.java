@@ -61,11 +61,8 @@ public class RegisterActivity extends ActivityBase {
         UserVO vo = bo.selectUser(userId);
 
         if (vo != null) {
-            String id = new EncDecUtil().decryptString(vo.getId());
-            String password = new EncDecUtil().decryptString(vo.getPassword());
-
-            ((EditText) findViewById(R.id.tbxId)).setText(id);
-            ((EditText) findViewById(R.id.tbxName)).setText(password);
+            ((EditText) findViewById(R.id.tbxId)).setText(vo.getId());
+            ((EditText) findViewById(R.id.tbxName)).setText(vo.getPassword());
             ((EditText) findViewById(R.id.tbxPassword)).setText(vo.getName());
         } else {
             Toast.makeText(this.getApplicationContext(), getString(R.string.warn_data_empty), Toast.LENGTH_SHORT).show();
