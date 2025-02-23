@@ -1,13 +1,13 @@
 <resources>
     <!-- 라이트 모드에서 사용할 메뉴 스타일 -->
-    <style name="ThemeOverlay.LightMenu" parent="ThemeOverlay.Material3.Light">
-        <item name="android:textColorPrimary">#000000</item> <!-- 검은색 글자 -->
-        <item name="android:background">#FFFFFF</item> <!-- 흰색 배경 -->
+    <style name="ThemeOverlay.LightMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:background">#FFFFFF</item>
     </style>
 
     <!-- 다크 모드에서 사용할 메뉴 스타일 -->
-    <style name="ThemeOverlay.DarkMenu" parent="ThemeOverlay.Material3.Dark">
-        <item name="android:textColorPrimary">#FFFFFF</item> <!-- 흰색 글자 -->
-        <item name="android:background">#333333</item> <!-- 어두운 배경 -->
+    <style name="ThemeOverlay.DarkMenu" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:background">#333333</item>
     </style>
 </resources>

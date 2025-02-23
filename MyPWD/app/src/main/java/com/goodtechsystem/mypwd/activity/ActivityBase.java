@@ -1,6 +1,7 @@
 package com.goodtechsystem.mypwd.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.goodtechsystem.mypwd.R;
@@ -34,6 +36,9 @@ public class ActivityBase extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 시스템 테마를 따라가도록 설정
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

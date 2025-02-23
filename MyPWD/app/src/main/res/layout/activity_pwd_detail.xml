@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.PwdDetailActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,7 +16,8 @@
         android:background="#411BA4"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:elevation="4dp"
-        app:title="@string/detail"/>
+        app:title="@string/detail"
+        app:popupTheme="?attr/android:popupTheme"/>
 
     <LinearLayout
         android:layout_width="match_parent"
