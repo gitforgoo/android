@@ -78,7 +78,7 @@ public class PwdBO extends BoBase{
             selectionArgs = valueList.toArray(new String[0]);
         }
 
-        Cursor cursor = db.query(PwdConst.PWD.TABLE_NAME, fields, selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query(PwdConst.PWD.TABLE_NAME, fields, selection, selectionArgs, null, null, PwdConst.PWD.COL_SITE + " ASC, " + PwdConst.PWD.COL_ID + " ASC" );
 
         ArrayList<PwdVO> ret = fill(cursor);
         cursor.close();
